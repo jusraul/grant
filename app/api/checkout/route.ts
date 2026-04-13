@@ -1,25 +1,27 @@
-import { NextResponse } from "next/server";
 import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-03-25.dahlia",
-});
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  if (!process.env.STRIPE_SECRET_KEY) {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!secretKey) {
     return NextResponse.json(
-      { error: "Stripe is not configured. Set STRIPE_SECRET_KEY in .env.local.", url: null },
+      { error: "Missing STRIPE_SECRET_KEY" },
       { status: 500 }
     );
   }
 
+  const stripe = new Stripe(secretKey, {
+    apiVersion: "2026-03-25.dahlia",
+  });
+
   try {
     const body = await request.json();
     const amount = typeof body.amount === "number" && body.amount > 0 ? body.amount : 25;
-
-    const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
     const session = await stripe.checkout.sessions.create({
+      mode: "payment",
       payment_method_types: ["card"],
       line_items: [
         {
@@ -34,13 +36,13 @@ export async function POST(request: Request) {
           quantity: 1,
         },
       ],
-      mode: "payment",
       success_url: `${baseUrl}/get-involved?donated=true`,
       cancel_url: `${baseUrl}/get-involved`,
     });
 
     return NextResponse.json({ url: session.url });
-  } catch {
+  } catch (error) {
+    console.error("Stripe checkout error:", error);
     return NextResponse.json(
       { error: "Failed to create checkout session" },
       { status: 500 }
