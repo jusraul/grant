@@ -3,13 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const secretKey = process.env.STRIPE_SECRET_KEY;
-
-  if (!secretKey) {
-    return NextResponse.json(
-      { error: "Missing STRIPE_SECRET_KEY" },
-      { status: 500 }
-    );
-  }
+  if (!secretKey) throw new Error("Missing STRIPE_SECRET_KEY");
 
   const stripe = new Stripe(secretKey, {
     apiVersion: "2026-03-25.dahlia",
