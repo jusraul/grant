@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import DonateButton from "./DonateButton";
 import { siteConfig } from "@/content/site";
 
 export default function Header() {
@@ -32,9 +33,9 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/partners" className="btn-primary ml-2 text-sm py-2">
-              Donate
-            </Link>
+            <div className="ml-2 w-28">
+              <DonateButton label="Donate" />
+            </div>
           </nav>
 
           <button
@@ -70,14 +71,8 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className="pt-2">
-              <Link
-                href="/partners"
-                className="btn-primary w-full text-center"
-                onClick={() => setMobileOpen(false)}
-              >
-                Donate
-              </Link>
+            <div className="pt-2 w-full">
+              <DonateButton label="Donate" />
             </div>
           </div>
         </nav>

@@ -28,6 +28,7 @@ export const siteConfig = {
     { label: "Programs", href: "/programs" },
     { label: "Pilot Monitoring", href: "/pilot-monitoring" },
     { label: "Partners", href: "/partners" },
+    { label: "FieldProof", href: "/fieldproof" },
     { label: "Get Involved", href: "/get-involved" },
   ],
   sponsorTiers: [

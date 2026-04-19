@@ -12,64 +12,98 @@ export default function DonateButton({
   label = "Donate",
 }: DonateButtonProps) {
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [customAmount, setCustomAmount] = useState(amount);
+  const [payMethod, setPayMethod] = useState<"stripe" | null>(null);
 
-  async function handleStripe() {
+  async function handleStripe(finalAmount: number) {
     setLoading(true);
-
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
+        body: JSON.stringify({ amount: finalAmount }),
       });
-
       const data = await res.json();
-
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(
-          "Checkout is not yet configured. Please contact us directly."
-        );
+        alert("Checkout is not yet configured. Please contact us directly.");
       }
     } catch {
-      alert(
-        "Checkout is not yet configured. Please contact us directly."
-      );
+      alert("Checkout is not yet configured. Please contact us directly.");
     } finally {
       setLoading(false);
+      setShowModal(false);
     }
   }
 
-  function handlePayPal() {
-    const paypalUrl = new URL("https://www.paypal.com/donate");
-    paypalUrl.searchParams.set("business", "lowerwithlacoocheeriverkeeper@gmail.com");
-    paypalUrl.searchParams.set("amount", String(amount));
-    paypalUrl.searchParams.set("currency_code", "USD");
-    paypalUrl.searchParams.set("item_name", "LWRK Donation");
-    window.location.href = paypalUrl.toString();
+
+
+  function openModal() {
+    setPayMethod("stripe");
+    setShowModal(true);
+  }
+
+  function handleDonate(e: React.FormEvent) {
+    e.preventDefault();
+    if (!customAmount || customAmount < 1) {
+      alert("Please enter a valid amount.");
+      return;
+    }
+    if (payMethod === "stripe") handleStripe(customAmount);
   }
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <button
-        type="button"
-        onClick={handleStripe}
-        disabled={loading}
-        className="btn-primary w-full disabled:opacity-50"
-      >
-        {loading ? "Redirecting…" : label}
-      </button>
-      <button
-        type="button"
-        onClick={handlePayPal}
-        className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#0070ba] text-white font-semibold rounded-lg hover:bg-[#005c99] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0070ba] focus:ring-offset-2"
-      >
-        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.56A.859.859 0 0 1 5.79 1.84h5.943c2.583 0 4.378.87 5.076 2.467.31.71.396 1.39.274 2.15-.013.082-.031.164-.05.248l-.018.09v.08l.074.04c.548.3.987.682 1.31 1.142.456.65.676 1.472.655 2.44-.024 1.105-.294 2.07-.804 2.867-.46.72-1.068 1.292-1.808 1.702-.672.372-1.45.625-2.315.752a12.19 12.19 0 0 1-1.882.138H11.31a1.07 1.07 0 0 0-1.058.9l-.054.33-.91 5.77-.043.227a.264.264 0 0 1-.26.222H7.076z" />
-        </svg>
-        Pay with PayPal
-      </button>
-    </div>
+    <>
+      <div className="flex flex-col gap-2 w-full">
+        <button
+          type="button"
+          onClick={openModal}
+          disabled={loading}
+          className="btn-primary w-full disabled:opacity-50"
+        >
+          {loading ? "Redirecting…" : label}
+        </button>
+      </div>
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <form
+            className="bg-white rounded-xl shadow-lg p-8 w-full max-w-xs flex flex-col gap-4"
+            onSubmit={handleDonate}
+          >
+            <h2 className="text-lg font-bold mb-2 text-center">Enter Donation Amount</h2>
+            <input
+              type="number"
+              min={1}
+              step={1}
+              value={customAmount}
+              onChange={e => setCustomAmount(Number(e.target.value))}
+              className="border border-sand-300 rounded-lg px-4 py-2 text-lg text-center focus:outline-none focus:ring-2 focus:ring-river-500"
+              placeholder="Amount (USD)"
+              required
+              autoFocus
+            />
+            <div className="flex gap-2 mt-2">
+              <button
+                type="submit"
+                className="btn-primary flex-1"
+                disabled={loading}
+              >
+                {loading ? "Redirecting…" : "Donate"}
+              </button>
+              <button
+                type="button"
+                className="btn-secondary flex-1"
+                onClick={() => setShowModal(false)}
+                disabled={loading}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </>
   );
 }
