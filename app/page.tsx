@@ -164,15 +164,286 @@ function PilotMonitoringPreview() {
 }
 
 export default function HomePage() {
+  const impactStats = [
+    {
+      value: 'Field-Based',
+      label: 'River work grounded in measurable action, not generic advocacy.',
+    },
+    {
+      value: 'Nature Coast',
+      label: 'Focused on the Lower Withlacoochee River and estuarine transition zones.',
+    },
+    {
+      value: 'ADA-Aware',
+      label: 'Programs designed to expand inclusive participation in stewardship.',
+    },
+  ];
+
+  const programs = [
+    {
+      title: 'Marine Debris Removal',
+      description: 'Targeted shoreline cleanup and debris removal that improves river condition, public access, and habitat quality.',
+      points: [
+        'Shoreline cleanup operations',
+        'Debris tracking and removal logging',
+        'Volunteer and sponsor activation',
+      ],
+    },
+    {
+      title: 'Water Monitoring',
+      description: 'Field-based observation and monitoring infrastructure to strengthen river awareness, decision-making, and future restoration capacity.',
+      points: [
+        'GPS-tagged field records',
+        'Structured observation workflows',
+        'Monitoring-ready program framing',
+      ],
+    },
+    {
+      title: 'Habitat & Shoreline Resilience',
+      description: 'River and estuary-focused stewardship work that supports shoreline condition, habitat function, and long-term resilience.',
+      points: [
+        'Site-based restoration priorities',
+        'Shoreline condition focus',
+        'Conservation capacity building',
+      ],
+    },
+    {
+      title: 'Inclusive Stewardship',
+      description: 'ADA-aware and veteran-inclusive public participation designed to widen meaningful access to environmental stewardship.',
+      points: [
+        'Accessible public programming',
+        'Veteran participation pathways',
+        'Community stewardship engagement',
+      ],
+    },
+  ];
+
+  const trustSignals = [
+    'River- and estuary-specific mission focus',
+    'Field-based program structure',
+    'Sponsor- and partner-ready framing',
+    'Monitoring and restoration credibility architecture',
+  ];
+
+  const actions = [
+    {
+      title: 'Support the Work',
+      description: 'Help fund measurable cleanup, monitoring, restoration, and inclusive stewardship on Florida’s Nature Coast.',
+      cta: 'Donate',
+      href: '/donate',
+    },
+    {
+      title: 'Partner With Us',
+      description: 'Align your organization, business, school, or institution with river protection and field-based public benefit.',
+      cta: 'View Partnerships',
+      href: '/partners-sponsors',
+    },
+    {
+      title: 'Join the Mission',
+      description: 'Volunteer, collaborate, or participate in stewardship programs that strengthen long-term conservation capacity.',
+      cta: 'Get Involved',
+      href: '/get-involved',
+    },
+  ];
+
   return (
-    <>
-      <Hero />
-      <ProofSection />
-      <CleanupArchive />
-      <ProgramsOverview />
-      <PilotMonitoringPreview />
-      <SponsorTiers />
-      <VolunteerSection />
-    </>
+    <main className="min-h-screen bg-slate-950 text-white">
+      <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.15),transparent_28%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-16 md:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-24">
+          <div>
+            <div className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-medium text-emerald-200">
+              Lower Withlacoochee Riverkeeper
+            </div>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
+              Protecting the Lower Withlacoochee River Through Measurable Action.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">
+              We strengthen river and estuary stewardship through field-based action, shoreline cleanup, monitoring-oriented infrastructure, habitat-focused restoration priorities, and inclusive public participation across Florida’s Nature Coast.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="https://www.paypal.com/ncp/payment/SMCHXWDE8843G"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400"
+              >
+                Support the River
+              </a>
+              <a
+                href="/programs"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                View Programs
+              </a>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {impactStats.map((stat) => (
+                <div
+                  key={stat.value}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur"
+                >
+                  <div className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                    {stat.value}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-slate-950/40 backdrop-blur">
+            <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300">
+                Why this matters
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold text-white">
+                A healthier river requires more than awareness.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-300">
+                Funders, sponsors, and partners respond to organizations that can show
+                field relevance, public benefit, and operational seriousness. This work is
+                designed to move from concern to measurable stewardship.
+              </p>
+            </div>
+            <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/80 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                Current priorities
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+                <li>• Marine debris removal and shoreline cleanup</li>
+                <li>• Water quality awareness and monitoring capacity</li>
+                <li>• Habitat restoration and shoreline resilience</li>
+                <li>• ADA-friendly and veteran-inclusive stewardship programs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 bg-slate-950 px-6 py-16 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
+              Programs
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Structured for stewardship, funding, and long-term river protection.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-300">
+              Lower Withlacoochee Riverkeeper should present programs as fundable,
+              measurable operating lanes—not broad environmental intentions.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {programs.map((program) => (
+              <article
+                key={program.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-6"
+              >
+                <h3 className="text-2xl font-semibold text-white">{program.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{program.description}</p>
+                <ul className="mt-5 space-y-2 text-sm leading-7 text-slate-200">
+                  {program.points.map((point) => (
+                    <li key={point}>• {point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 bg-slate-900/60 px-6 py-16 md:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+              Monitoring & trust
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Credibility comes from field discipline.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-300">
+              Monitoring, field documentation, and structured observations are not side
+              features. They are the trust layer that supports donor confidence, grant
+              competitiveness, and institutional partnerships.
+            </p>
+            <a
+              href="/monitoring-data"
+              className="mt-6 inline-flex items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 px-5 py-3 text-sm font-semibold text-sky-200 transition hover:bg-sky-400/20"
+            >
+              Explore Monitoring & Data
+            </a>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {trustSignals.map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+                <p className="text-sm leading-7 text-slate-200">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 bg-slate-950 px-6 py-16 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
+              Take action
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              Built to convert concern into support, participation, and partnership.
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {actions.map((action) => (
+              <div key={action.title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <h3 className="text-2xl font-semibold text-white">{action.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{action.description}</p>
+                <a
+                  href={action.href}
+                  className="mt-6 inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+                >
+                  {action.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-emerald-600 px-6 py-16 text-slate-950 md:px-8">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-950/70">
+            Support measurable river protection
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+            Help protect the Lower Withlacoochee River through real field-based work.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-emerald-950/80">
+            Your support helps fund cleanup, monitoring capacity, restoration priorities,
+            and inclusive stewardship that strengthens long-term conservation on Florida’s
+            Nature Coast.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              href="/donate"
+              className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Donate Now
+            </a>
+            <a
+              href="/partners-sponsors"
+              className="inline-flex items-center justify-center rounded-2xl border border-emerald-950/20 bg-white/20 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/30"
+            >
+              Become a Partner or Sponsor
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

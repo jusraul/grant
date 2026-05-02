@@ -51,10 +51,10 @@ export default function Footer() {
               </p>
               <p>
                 <a
-                  href={`mailto:${siteConfig.contact.email}`}
+                  href="mailto:lowerwithlacoocheeriverkeeper@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  {siteConfig.contact.email}
+                  lowerwithlacoocheeriverkeeper@gmail.com
                 </a>
               </p>
             </address>

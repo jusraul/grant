@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import "./globals.css";
+import "./layout.css";
 
 export const metadata: Metadata = {
   title: {

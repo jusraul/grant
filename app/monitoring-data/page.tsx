@@ -1,4 +1,3 @@
-
 import React from "react";
 
 export default function MonitoringDataPage() {
@@ -260,4 +259,3 @@ export default function MonitoringDataPage() {
     </main>
   );
 }
-

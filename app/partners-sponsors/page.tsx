@@ -1,6 +1,6 @@
-import Link from "next/link";
+import React from "react";
 
-export default function PartnersPage() {
+export default function PartnersSponsorsPage() {
   const sponsorReasons = [
     {
       title: 'Visible Local Impact',
@@ -62,12 +62,12 @@ export default function PartnersPage() {
     {
       title: 'In-Kind Support',
       text:
-            <Link
-              href="/donate"
-              className="inline-flex items-center justify-center rounded-2xl border border-emerald-950/20 bg-white/20 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/30"
-            >
-              Support the Mission
-            </Link>
+        'Provide equipment, materials, logistics, technical services, field support, or venue resources that strengthen river operations.',
+    },
+    {
+      title: 'Program Collaboration',
+      text:
+        'Co-develop educational, stewardship, restoration, access, or monitoring-oriented efforts that produce stronger shared outcomes.',
     },
   ];
 
@@ -189,7 +189,21 @@ export default function PartnersPage() {
         </div>
       </section>
 
-
+      <section className="border-b border-white/10 bg-slate-900/60 px-6 py-16 md:px-8">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-slate-950/70 p-8 md:p-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+            Partnership discipline
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Strong alignment depends on disciplined representation.
+          </h2>
+          <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-300 md:text-base md:leading-8">
+            {safeguards.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section className="bg-emerald-600 px-6 py-16 text-slate-950 md:px-8">
         <div className="mx-auto max-w-5xl text-center">
@@ -205,7 +219,7 @@ export default function PartnersPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:lowerwithlacoocheeriverkeeper@gmail.com"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               Contact Us

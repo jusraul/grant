@@ -24,12 +24,12 @@ export default function Hero() {
             the Gulf.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/get-involved"
+            <a
+              href="mailto:lowerwithlacoocheeriverkeeper@gmail.com"
               className="btn-primary bg-white text-river-900 hover:bg-river-100 text-base px-8 py-4"
             >
               Join a Cleanup
-            </Link>
+            </a>
             <Link
               href="/partners"
               className="btn-secondary border-river-400 text-river-200 hover:bg-river-800/50 text-base px-8 py-4"

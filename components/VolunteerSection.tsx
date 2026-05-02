@@ -21,9 +21,9 @@ export default function VolunteerSection() {
               riverbank cleared, hours of labor documented. Your effort goes on
               the record.
             </p>
-            <Link href="/get-involved" className="btn-primary bg-white text-river-900 hover:bg-river-100">
+            <a href="mailto:lowerwithlacoocheeriverkeeper@gmail.com" className="btn-primary bg-white text-river-900 hover:bg-river-100">
               Sign Up to Volunteer
-            </Link>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

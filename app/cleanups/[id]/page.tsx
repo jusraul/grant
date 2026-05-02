@@ -115,9 +115,9 @@ export default function CleanupDetailPage({ params }: CleanupPageProps) {
             <p className="text-river-600 text-sm mb-6">
               Want to participate in a future cleanup event?
             </p>
-            <Link href="/get-involved" className="btn-primary">
+            <a href="mailto:lowerwithlacoocheeriverkeeper@gmail.com" className="btn-primary">
               Get Involved
-            </Link>
+            </a>
           </div>
         </div>
       </section>
